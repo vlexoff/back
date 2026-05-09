@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rafael Reznov — Los Santos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --violet:       #2D1B4E;
+    --violet-mid:   #4A2C7A;
+    --violet-light: #7B4DB5;
+    --violet-pale:  #A97DD4;
+    --copper:       #B87333;
+    --copper-light: #D4956A;
+    --copper-bright:#E8AA72;
+    --copper-glow:  #F0C080;
+    --dark:         #0A0610;
+    --charcoal:     #110D1A;
+    --mid:          #1C1528;
+    --surface:      #231B34;
+    --text:         #E8DFF5;
+    --text-muted:   #8A7AA0;
+    --text-dim:     #5A4E70;
+    --off-white:    #F2EBF8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* GRAIN */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* AMBIENT GLOW */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 600px;
+    background: radial-gradient(ellipse, rgba(74,44,122,0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem;
+    height: 64px;
+    background: rgba(6,3,12,0.94);
+    border-bottom: 1px solid rgba(184,115,51,0.18);
+    backdrop-filter: blur(16px);
+  }
+
+  nav .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 5px;
+    color: var(--copper-bright);
+  }
+
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+
+  nav a {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  nav a:hover { color: var(--copper-bright); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(74,44,122,0.22) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 30%, rgba(184,115,51,0.08) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 90%, rgba(45,27,78,0.3) 0%, transparent 60%);
+  }
+
+  .hero-line-left {
+    position: absolute;
+    left: 3.5rem; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent 10%, var(--copper) 40%, var(--violet-light) 70%, transparent 95%);
+    opacity: 0.4;
+  }
+
+  .hero-line-right {
+    position: absolute;
+    right: 3.5rem; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent 10%, var(--violet-light) 40%, var(--copper) 70%, transparent 95%);
+    opacity: 0.4;
+  }
+
+  .hero-corner {
+    position: absolute;
+    width: 40px; height: 40px;
+    opacity: 0.4;
+  }
+  .hero-corner.tl { top: 5rem; left: 3rem; border-top: 1px solid var(--copper); border-left: 1px solid var(--copper); }
+  .hero-corner.tr { top: 5rem; right: 3rem; border-top: 1px solid var(--copper); border-right: 1px solid var(--copper); }
+  .hero-corner.bl { bottom: 3rem; left: 3rem; border-bottom: 1px solid var(--copper); border-left: 1px solid var(--copper); }
+  .hero-corner.br { bottom: 3rem; right: 3rem; border-bottom: 1px solid var(--copper); border-right: 1px solid var(--copper); }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 8rem 4rem 6rem;
+    text-align: center;
+  }
+
+  .hero-tag {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    opacity: 0.85;
+  }
+
+  .hero-tag::before, .hero-tag::after {
+    content: '';
+    display: block;
+    width: 48px; height: 1px;
+    background: var(--copper);
+    opacity: 0.4;
+  }
+
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(70px, 11vw, 130px);
+    line-height: 0.88;
+    letter-spacing: 8px;
+    color: var(--off-white);
+    margin-bottom: 0.4em;
+  }
+
+  .hero-name .first { color: var(--copper-bright); display: block; }
+  .hero-name .last  { color: var(--violet-pale); display: block; }
+
+  .hero-sub {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+  }
+
+  .hero-quote {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 21px;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    line-height: 1.65;
+  }
+
+  .hero-quote em {
+    color: var(--copper-bright);
+    font-style: normal;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    opacity: 0.35;
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1; max-width: 100px; height: 1px;
+    background: var(--copper);
+  }
+  .divider-gem {
+    width: 7px; height: 7px;
+    background: var(--copper);
+    transform: rotate(45deg);
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    margin-top: 3rem;
+  }
+
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--copper-bright);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  /* SECTIONS */
+  section { position: relative; z-index: 1; }
+
+  .section-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+  }
+
+  .section-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--copper);
+    opacity: 0.8;
+    margin-bottom: 0.4rem;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 62px);
+    letter-spacing: 4px;
+    color: var(--off-white);
+    margin-bottom: 3rem;
+    line-height: 1;
+  }
+
+  .section-title span { color: var(--copper-bright); }
+
+  /* ABOUT */
+  .about { background: var(--charcoal); border-top: 1px solid rgba(184,115,51,0.1); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: #C0B0D8;
+    margin-bottom: 1.3rem;
+    font-size: 18px;
+  }
+
+  .about-text p:first-child::first-letter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 58px;
+    line-height: 0.8;
+    float: left;
+    margin-right: 10px;
+    color: var(--copper);
+    margin-top: 8px;
+  }
+
+  .info-card {
+    background: var(--surface);
+    border: 1px solid rgba(184,115,51,0.2);
+    padding: 2rem;
+    position: sticky;
+    top: 80px;
+  }
+
+  .info-card-top {
+    height: 3px;
+    background: linear-gradient(to right, var(--copper), var(--violet-light));
+    margin: -2rem -2rem 2rem;
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .info-row:last-child { border-bottom: none; }
+
+  .info-key {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .info-val {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--off-white);
+    text-align: right;
+  }
+  .info-val.copper { color: var(--copper-bright); }
+  .info-val.violet { color: var(--violet-pale); }
+
+  /* FAMILLE */
+  .famille { background: var(--dark); }
+
+  .parents-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .parent-card {
+    background: var(--charcoal);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem 2rem 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .parent-card:hover { border-color: rgba(184,115,51,0.28); }
+
+  .parent-card.yakov::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--violet-light);
+  }
+  .parent-card.kamilla::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--copper);
+  }
+
+  .parent-origin {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .parent-card.yakov .parent-origin { color: var(--violet-pale); }
+  .parent-card.kamilla .parent-origin { color: var(--copper-bright); }
+
+  .parent-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    letter-spacing: 3px;
+    color: var(--off-white);
+    margin-bottom: 1rem;
+  }
+
+  .parent-desc { color: var(--text-muted); font-size: 16px; line-height: 1.7; }
+
+  /* TIMELINE */
+  .timeline-section { background: var(--charcoal); border-top: 1px solid rgba(184,115,51,0.08); }
+
+  .timeline {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-top: 3rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--copper), var(--violet-light), var(--copper-bright));
+    opacity: 0.5;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 3rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 7px;
+    width: 7px; height: 7px;
+    background: var(--copper);
+    transform: rotate(45deg);
+    transition: transform 0.3s, background 0.3s;
+  }
+  .timeline-item:hover::before {
+    transform: rotate(45deg) scale(1.6);
+    background: var(--copper-bright);
+  }
+
+  .timeline-age {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--copper);
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-event {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--off-white);
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+  }
+
+  .timeline-desc { color: var(--text-muted); font-size: 16px; max-width: 580px; }
+
+  /* OBJECTIFS */
+  .objectifs { background: var(--dark); }
+
+  .obj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .obj-card {
+    background: var(--charcoal);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem;
+    position: relative;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .obj-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(184,115,51,0.22);
+  }
+
+  .obj-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .obj-card.court::before { background: var(--violet-light); }
+  .obj-card.moyen::before { background: var(--copper); }
+  .obj-card.long::before  { background: linear-gradient(to right, var(--copper), var(--violet-light)); }
+
+  .obj-term {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .court .obj-term { color: var(--violet-pale); }
+  .moyen .obj-term { color: var(--copper-bright); }
+  .long  .obj-term { color: var(--copper-glow); }
+
+  .obj-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: var(--off-white);
+    margin-bottom: 1.5rem;
+  }
+
+  .obj-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+
+  .obj-list li {
+    font-size: 15px;
+    color: #8878A4;
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .obj-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 10px;
+    width: 5px; height: 1px;
+  }
+  .court .obj-list li::before { background: var(--violet-pale); }
+  .moyen .obj-list li::before { background: var(--copper); }
+  .long  .obj-list li::before { background: var(--copper-bright); }
+
+  /* CARACTERE */
+  .caractere-section { background: var(--charcoal); }
+
+  .trait-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .trait {
+    text-align: center;
+    padding: 2rem 1rem;
+    border: 1px solid rgba(255,255,255,0.05);
+    background: var(--mid);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .trait:hover {
+    border-color: rgba(184,115,51,0.2);
+    background: var(--surface);
+  }
+
+  .trait-icon {
+    font-size: 22px;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .trait-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--copper-bright);
+    margin-bottom: 0.6rem;
+  }
+
+  .trait-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ACCORDION */
+  .accordion { margin-top: 4rem; max-width: 680px; }
+
+  .acc-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+  .acc-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 0;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .acc-head-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text);
+    transition: color 0.2s;
+  }
+  .acc-head:hover .acc-head-title { color: var(--copper-bright); }
+
+  .acc-arrow {
+    font-size: 11px;
+    color: var(--copper);
+    transition: transform 0.3s;
+  }
+
+  .acc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+  }
+  .acc-body.open { max-height: 280px; padding-bottom: 1.2rem; }
+  .acc-body p { color: var(--text-muted); font-size: 16px; line-height: 1.7; }
+
+  /* FOOTER */
+  .footer-bar {
+    display: flex;
+    height: 3px;
+    position: relative;
+    z-index: 1;
+  }
+  .fb1 { background: var(--copper); flex: 2; }
+  .fb2 { background: var(--violet-mid); flex: 1; }
+  .fb3 { background: var(--violet-light); flex: 1; }
+  .fb4 { background: var(--copper-bright); flex: 2; }
+
+  footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid rgba(184,115,51,0.12);
+    padding: 3rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--charcoal);
+  }
+
+  .f-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 5px;
+    color: var(--copper-bright);
+  }
+
+  .f-sub {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  .f-right {
+    text-align: right;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag    { animation: fadeUp 0.8s ease 0.1s both; }
+  .hero-name   { animation: fadeUp 0.8s ease 0.25s both; }
+  .hero-sub    { animation: fadeUp 0.8s ease 0.38s both; }
+  .divider     { animation: fadeUp 0.8s ease 0.48s both; }
+  .hero-quote  { animation: fadeUp 0.8s ease 0.58s both; }
+  .stat-row    { animation: fadeUp 0.8s ease 0.72s both; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">R. REZNOV</div>
+  <ul>
+    <li><a href="#about">Profil</a></li>
+    <li><a href="#famille">Famille</a></li>
+    <li><a href="#parcours">Parcours</a></li>
+    <li><a href="#objectifs">Objectifs</a></li>
+    <li><a href="#caractere">Caractere</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line-left"></div>
+  <div class="hero-line-right"></div>
+  <div class="hero-corner tl"></div>
+  <div class="hero-corner tr"></div>
+  <div class="hero-corner bl"></div>
+  <div class="hero-corner br"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Dossier Personnage &mdash; GTA RP &mdash; Los Santos</div>
+
+    <h1 class="hero-name">
+      <span class="first">Rafael</span>
+      <span class="last">Reznov</span>
+    </h1>
+
+    <p class="hero-sub">South Los Santos &nbsp;&bull;&nbsp; Entrepreneur &nbsp;&bull;&nbsp; 21 ans</p>
+
+    <div class="divider"><div class="divider-gem"></div></div>
+
+    <p class="hero-quote">"Le nom Reznov sera synonyme de <em>reussite</em> &mdash; pas de naissance, de travail."</p>
+
+    <div class="stat-row">
+      <div class="stat">
+        <span class="stat-value">21</span>
+        <span class="stat-label">Age</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">5+</span>
+        <span class="stat-label">Annees au South</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">0</span>
+        <span class="stat-label">Casier judiciaire</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">Qui est-il</div>
+        <h2 class="section-title">Le <span>Profil</span></h2>
+
+        <p>Rafael Reznov est ne aux Etats-Unis d'un pere russe, Yakov Reznov, et d'une mere americaine, Kamilla. Tres jeune, il part vivre en Russie avec sa mere pendant plusieurs annees, avant de revenir seul a Los Santos a 16 ans pour retrouver son pere — apres une rupture difficile avec sa mere.</p>
+
+        <p>Depuis son arrivee dans le South, Rafael s'est construit une vraie place dans le quartier. Tout le monde le connait comme le gars sympa, celui qui met une bonne ambiance meme dans les pires moments. Il a grandi entre les terrains de basket, les petits commerces et les rues animees.</p>
+
+        <p>Atteint de trisomie, il a ete sous-estime toute sa vie. Beaucoup pensaient qu'il ne reussirait jamais rien de serieux. Rafael a toujours vu les choses autrement : il veut prouver par les faits, pas par les mots.</p>
+
+        <div class="divider" style="opacity:0.2; margin: 1.5rem 0; justify-content: flex-start; max-width: 300px;"></div>
+
+        <p>Contrairement a la plupart des jeunes du South attires par l'argent facile, Rafael a toujours ete fascine par le monde des entreprises et des patrons. Aujourd'hui, il est pret a construire quelque chose qui lui appartient.</p>
+      </div>
+
+      <div>
+        <div class="info-card">
+          <div class="info-card-top"></div>
+          <div class="info-row">
+            <span class="info-key">Prenom</span>
+            <span class="info-val">Rafael</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Nom</span>
+            <span class="info-val copper">Reznov</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Age</span>
+            <span class="info-val">21 ans</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Origine</span>
+            <span class="info-val violet">Russo-Americain</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Lieu de vie</span>
+            <span class="info-val">South Los Santos</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Pere</span>
+            <span class="info-val">Yakov Reznov</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Mere</span>
+            <span class="info-val">Kamilla Reznov</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Ambition</span>
+            <span class="info-val copper">Entrepreneur legal</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Statut</span>
+            <span class="info-val violet">Casier vierge</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAMILLE -->
+<section class="famille" id="famille">
+  <div class="section-inner">
+    <div class="section-label">Les racines</div>
+    <h2 class="section-title">La <span>Famille</span></h2>
+    <div class="parents-grid">
+      <div class="parent-card yakov">
+        <div class="parent-origin">Russe &mdash; Los Santos</div>
+        <div class="parent-name">Yakov Reznov</div>
+        <p class="parent-desc">Un homme discret mais respecte dans certains milieux de la ville. Yakov connait toujours quelqu'un qui connait quelqu'un. Patrons, commercants, investisseurs, mecaniciens — son carnet d'adresses est son vrai capital. Il n'a jamais parle de son fils a son entourage, mais l'a aide en silence quand Rafael est revenu a Los Santos.</p>
+      </div>
+      <div class="parent-card kamilla">
+        <div class="parent-origin">Americaine &mdash; Russie / Los Santos</div>
+        <div class="parent-name">Kamilla Reznov</div>
+        <p class="parent-desc">Charismatique, drole et tres sociable. Kamilla connait tous les voisins, parle avec tout le monde et a toujours protege Rafael avec une energie incroyable. C'est elle qui lui a transmis son cote humain, sa facilite a parler aux gens et sa capacite a remonter le moral des autres. Leur separation a ete douloureuse, mais son influence reste profondement inscrite chez Rafael.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCOURS -->
+<section class="timeline-section" id="parcours">
+  <div class="section-inner">
+    <div class="section-label">Son histoire</div>
+    <h2 class="section-title">Le <span>Parcours</span></h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-age">Naissance &mdash; Amerique</div>
+        <div class="timeline-event">Los Santos, Origine Mixte</div>
+        <p class="timeline-desc">Rafael nait aux Etats-Unis d'un pere russe installe a Los Santos et d'une mere americaine. Deux cultures, deux mondes — une vie qui commence entre deux continents.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-age">Enfance &mdash; Russie</div>
+        <div class="timeline-event">Annees sous la protection de Kamilla</div>
+        <p class="timeline-desc">Sa mere decide de partir vivre en Russie avec lui. Rafael grandit la-bas, protege par Kamilla qui fait tout pour que sa trisomie ne soit pas un obstacle. Il apprend a parler avec les gens, a ne pas s'isoler, a garder le sourire.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-age">16 ans &mdash; Tournant</div>
+        <div class="timeline-event">Rupture et depart pour Los Santos</div>
+        <p class="timeline-desc">Une grosse dispute avec sa mere autour de la question de son pere absent. Rafael decide de quitter la Russie seul pour retrouver Yakov a Los Santos — une decision qui va tout changer.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-age">16 ans &mdash; Arrivee</div>
+        <div class="timeline-event">Inconnu dans le South</div>
+        <p class="timeline-desc">Personne ne sait qui il est. Yakov n'a jamais parle de son fils. Rafael commence a zero dans les rues du South, apprend a survivre, a se faire accepter, et a construire sa place dans le quartier.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-age">16 a 21 ans</div>
+        <div class="timeline-event">Construction du personnage</div>
+        <p class="timeline-desc">Cinq ans a se forger une identite dans le South. Les terrains de basket, les petits boulots, les discussions avec les voisins. Rafael devient le gars sympa du quartier — tout le monde le connait, tout le monde l'apprecie.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-age">Aujourd'hui &mdash; 21 ans</div>
+        <div class="timeline-event">Pret a changer les choses</div>
+        <p class="timeline-desc">Les contacts de son pere, l'empathie de sa mere, la connaissance du terrain du South — et une ambition que personne n'avait prevue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTIFS -->
+<section class="objectifs" id="objectifs">
+  <div class="section-inner">
+    <div class="section-label">Vision</div>
+    <h2 class="section-title">Les <span>Objectifs</span></h2>
+    <div class="obj-grid">
+      <div class="obj-card court">
+        <div class="obj-term">Court terme</div>
+        <div class="obj-heading">Poser les bases</div>
+        <ul class="obj-list">
+          <li>Trouver un travail stable pour apprendre le fonctionnement des entreprises</li>
+          <li>Commencer a economiser pour investir dans un projet</li>
+          <li>Developper son reseau grace aux contacts de Yakov</li>
+          <li>Se faire connaitre positivement dans les commerces de Los Santos</li>
+          <li>Acheter son premier vehicule et devenir independant</li>
+        </ul>
+      </div>
+      <div class="obj-card moyen">
+        <div class="obj-term">Moyen terme</div>
+        <div class="obj-heading">Passer a l'action</div>
+        <ul class="obj-list">
+          <li>Ouvrir une premiere entreprise legale a Los Santos</li>
+          <li>Employer des jeunes du South pour les aider a sortir de la rue</li>
+          <li>Construire une reputation serieuse dans les affaires</li>
+          <li>Apprendre a gerer une equipe et des finances</li>
+          <li>Prouver a son pere qu'il peut reussir seul</li>
+        </ul>
+      </div>
+      <div class="obj-card long">
+        <div class="obj-term">Long terme</div>
+        <div class="obj-heading">Laisser sa marque</div>
+        <ul class="obj-list">
+          <li>Devenir un patron important et respecte a Los Santos</li>
+          <li>Posseder plusieurs entreprises dans differents domaines</li>
+          <li>Etre reconnu autant dans le South que chez les riches entrepreneurs</li>
+          <li>Faire du nom Reznov un symbole de reussite</li>
+          <li>Prouver que son handicap ne l'a jamais vraiment limite</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARACTERE -->
+<section class="caractere-section" id="caractere">
+  <div class="section-inner">
+    <div class="section-label">Psychologie</div>
+    <h2 class="section-title">Le <span>Caractere</span></h2>
+
+    <div class="trait-grid">
+      <div class="trait">
+        <span class="trait-icon" style="color: var(--copper-bright);">&#9651;</span>
+        <div class="trait-name">Ambitieux</div>
+        <p class="trait-desc">Reve grand, pense concret. Il ne cherche pas juste a survivre — il veut construire un empire legal.</p>
+      </div>
+      <div class="trait">
+        <span class="trait-icon" style="color: var(--violet-pale);">&#9632;</span>
+        <div class="trait-name">Determine</div>
+        <p class="trait-desc">Chaque personne qui l'a sous-estime a alimente sa motivation. Il ne lache jamais.</p>
+      </div>
+      <div class="trait">
+        <span class="trait-icon" style="color: var(--copper);">&#9670;</span>
+        <div class="trait-name">Sociable</div>
+        <p class="trait-desc">Heritier du charme de sa mere. A l'aise avec tout le monde, du gamin du South au grand patron.</p>
+      </div>
+      <div class="trait">
+        <span class="trait-icon" style="color: var(--violet-light);">&#9711;</span>
+        <div class="trait-name">Loyal</div>
+        <p class="trait-desc">N'oublie jamais ceux qui l'ont aide. Le South lui a tout appris — il lui rendra le double.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggle(this)">
+          <span class="acc-head-title">Sa trisomie &mdash; une force, pas une limite</span>
+          <span class="acc-arrow">&#9660;</span>
+        </div>
+        <div class="acc-body">
+          <p>Toute sa vie, les gens l'ont regarde differemment. Certains avec pitie, d'autres avec mepris. Rafael a appris a utiliser ca — chaque fois que quelqu'un le sous-estime, c'est une occasion de les surprendre. Sa determination a prouver le contraire est probablement son plus grand moteur.</p>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggle(this)">
+          <span class="acc-head-title">Relation avec son pere Yakov</span>
+          <span class="acc-arrow">&#9660;</span>
+        </div>
+        <div class="acc-body">
+          <p>Complexe. Rafael admire Yakov pour ses connexions et son sens des affaires, mais ressent encore une blessure due a l'absence. Il veut prouver qu'il peut reussir sans l'ombre de son pere — tout en reconnaissant que son reseau est une ressource reelle.</p>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggle(this)">
+          <span class="acc-head-title">Sa vision du South Los Santos</span>
+          <span class="acc-arrow">&#9660;</span>
+        </div>
+        <div class="acc-body">
+          <p>Il aime le South. Pas pour la violence ou le danger — mais pour les gens, l'authenticite, la solidarite entre voisins. Il veut que le quartier soit fier de lui, et il veut etre fier du quartier. Il pense que les gens du South meritent mieux, et il compte bien faire partie de cette amelioration.</p>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggle(this)">
+          <span class="acc-head-title">Pourquoi rester dans le legal</span>
+          <span class="acc-arrow">&#9660;</span>
+        </div>
+        <div class="acc-body">
+          <p>Rafael a vu ce que la criminalite fait aux gens autour de lui. Il ne veut pas finir en prison ou en cercueil avant 30 ans. Il croit sincerement qu'on peut reussir autrement — et il veut en etre la preuve vivante.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer-bar">
+  <div class="fb1"></div>
+  <div class="fb2"></div>
+  <div class="fb3"></div>
+  <div class="fb4"></div>
+</div>
+
+<footer>
+  <div>
+    <div class="f-name">Rafael Reznov</div>
+    <div class="f-sub">Los Santos &mdash; Background GTA RP</div>
+  </div>
+  <div class="f-right">
+    South Los Santos<br>
+    21 ans &mdash; Entrepreneur
+  </div>
+</footer>
+
+<script>
+function toggle(head) {
+  const body = head.nextElementSibling;
+  const arrow = head.querySelector('.acc-arrow');
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.acc-arrow').forEach(a => a.style.transform = '');
+  if (!isOpen) {
+    body.classList.add('open');
+    arrow.style.transform = 'rotate(180deg)';
+  }
+}
+</script>
+</body>
+</html>
