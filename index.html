@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rafael Reznov — Los Santos</title>
+<title>Rafael Lopez — Los Santos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -38,7 +38,6 @@
     overflow-x: hidden;
   }
 
-  /* GRAIN */
   body::before {
     content: '';
     position: fixed;
@@ -49,7 +48,6 @@
     opacity: 0.5;
   }
 
-  /* AMBIENT GLOW */
   body::after {
     content: '';
     position: fixed;
@@ -61,7 +59,6 @@
     z-index: 0;
   }
 
-  /* NAV */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -97,7 +94,6 @@
   }
   nav a:hover { color: var(--copper-bright); }
 
-  /* HERO */
   .hero {
     position: relative;
     min-height: 100vh;
@@ -130,11 +126,7 @@
     opacity: 0.4;
   }
 
-  .hero-corner {
-    position: absolute;
-    width: 40px; height: 40px;
-    opacity: 0.4;
-  }
+  .hero-corner { position: absolute; width: 40px; height: 40px; opacity: 0.4; }
   .hero-corner.tl { top: 5rem; left: 3rem; border-top: 1px solid var(--copper); border-left: 1px solid var(--copper); }
   .hero-corner.tr { top: 5rem; right: 3rem; border-top: 1px solid var(--copper); border-right: 1px solid var(--copper); }
   .hero-corner.bl { bottom: 3rem; left: 3rem; border-bottom: 1px solid var(--copper); border-left: 1px solid var(--copper); }
@@ -163,13 +155,10 @@
     gap: 1rem;
     opacity: 0.85;
   }
-
   .hero-tag::before, .hero-tag::after {
-    content: '';
-    display: block;
+    content: ''; display: block;
     width: 48px; height: 1px;
-    background: var(--copper);
-    opacity: 0.4;
+    background: var(--copper); opacity: 0.4;
   }
 
   .hero-name {
@@ -180,7 +169,6 @@
     color: var(--off-white);
     margin-bottom: 0.4em;
   }
-
   .hero-name .first { color: var(--copper-bright); display: block; }
   .hero-name .last  { color: var(--violet-pale); display: block; }
 
@@ -203,11 +191,7 @@
     margin: 0 auto 3rem;
     line-height: 1.65;
   }
-
-  .hero-quote em {
-    color: var(--copper-bright);
-    font-style: normal;
-  }
+  .hero-quote em { color: var(--copper-bright); font-style: normal; }
 
   .divider {
     display: flex;
@@ -221,16 +205,12 @@
     content: ''; flex: 1; max-width: 100px; height: 1px;
     background: var(--copper);
   }
-  .divider-gem {
-    width: 7px; height: 7px;
-    background: var(--copper);
-    transform: rotate(45deg);
-  }
+  .divider-gem { width: 7px; height: 7px; background: var(--copper); transform: rotate(45deg); }
 
   .stat-row {
     display: flex;
     justify-content: center;
-    gap: 5rem;
+    gap: 4rem;
     margin-top: 3rem;
   }
 
@@ -241,7 +221,6 @@
     line-height: 1;
     display: block;
   }
-
   .stat-label {
     font-family: 'Rajdhani', sans-serif;
     font-size: 11px;
@@ -251,7 +230,30 @@
     margin-top: 4px;
   }
 
-  /* SECTIONS */
+  /* DETTE BADGE */
+  .dette-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 2rem;
+    padding: 0.6rem 1.5rem;
+    border: 1px solid rgba(184,115,51,0.35);
+    background: rgba(184,115,51,0.07);
+  }
+  .dette-badge-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .dette-badge-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: #E05050;
+  }
+
   section { position: relative; z-index: 1; }
 
   .section-inner {
@@ -279,7 +281,6 @@
     margin-bottom: 3rem;
     line-height: 1;
   }
-
   .section-title span { color: var(--copper-bright); }
 
   /* ABOUT */
@@ -287,7 +288,7 @@
 
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 380px;
+    grid-template-columns: 1fr 360px;
     gap: 5rem;
     align-items: start;
   }
@@ -348,9 +349,153 @@
   }
   .info-val.copper { color: var(--copper-bright); }
   .info-val.violet { color: var(--violet-pale); }
+  .info-val.red    { color: #E05050; }
+
+  /* AMIS */
+  .amis-section { background: var(--dark); }
+
+  .amis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 0;
+  }
+
+  .ami-card {
+    background: var(--charcoal);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem 2rem 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .ami-card:hover { border-color: rgba(184,115,51,0.28); }
+
+  .ami-card.zia::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--violet-light);
+  }
+  .ami-card.tuco::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--copper);
+  }
+
+  .ami-role {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .ami-card.zia .ami-role  { color: var(--violet-pale); }
+  .ami-card.tuco .ami-role { color: var(--copper-bright); }
+
+  .ami-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    letter-spacing: 3px;
+    color: var(--off-white);
+    margin-bottom: 1rem;
+  }
+
+  .ami-desc { color: var(--text-muted); font-size: 16px; line-height: 1.7; }
+
+  .ami-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 3px 12px;
+    border: 1px solid;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .ami-card.zia  .ami-tag { border-color: rgba(169,125,212,0.4); color: var(--violet-pale); }
+  .ami-card.tuco .ami-tag { border-color: rgba(184,115,51,0.4); color: var(--copper-bright); }
+
+  /* DETTE */
+  .dette-section { background: var(--charcoal); border-top: 1px solid rgba(224,80,80,0.12); }
+
+  .dette-block {
+    background: var(--mid);
+    border: 1px solid rgba(224,80,80,0.2);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+
+  .dette-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, #E05050, var(--copper));
+  }
+
+  .dette-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    color: #E05050;
+    letter-spacing: 4px;
+    margin-bottom: 0.5rem;
+  }
+
+  .dette-amount span {
+    font-size: 32px;
+    color: var(--copper);
+    vertical-align: super;
+  }
+
+  .dette-creditor {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .dette-text {
+    color: #C0B0D8;
+    font-size: 17px;
+    line-height: 1.75;
+    max-width: 680px;
+  }
+
+  .dette-warning {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid rgba(224,80,80,0.25);
+    background: rgba(224,80,80,0.05);
+    max-width: 520px;
+  }
+
+  .dette-warning-bar {
+    width: 2px; height: 30px;
+    background: #E05050;
+    flex-shrink: 0;
+  }
+
+  .dette-warning p {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #E07070;
+    line-height: 1.5;
+  }
 
   /* FAMILLE */
-  .famille { background: var(--dark); }
+  .famille-section { background: var(--dark); }
 
   .parents-grid {
     display: grid;
@@ -368,19 +513,17 @@
   }
   .parent-card:hover { border-color: rgba(184,115,51,0.28); }
 
-  .parent-card.yakov::before {
+  .parent-card.papa::before {
     content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: var(--violet-light);
-  }
-  .parent-card.kamilla::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
+    position: absolute; top: 0; left: 0;
     width: 3px; height: 100%;
     background: var(--copper);
+  }
+  .parent-card.mama::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--violet-light);
   }
 
   .parent-origin {
@@ -390,8 +533,8 @@
     text-transform: uppercase;
     margin-bottom: 0.4rem;
   }
-  .parent-card.yakov .parent-origin { color: var(--violet-pale); }
-  .parent-card.kamilla .parent-origin { color: var(--copper-bright); }
+  .parent-card.papa .parent-origin { color: var(--copper-bright); }
+  .parent-card.mama .parent-origin { color: var(--violet-pale); }
 
   .parent-name {
     font-family: 'Bebas Neue', sans-serif;
@@ -429,17 +572,13 @@
   .timeline-item::before {
     content: '';
     position: absolute;
-    left: -2.5rem;
-    top: 7px;
+    left: -2.5rem; top: 7px;
     width: 7px; height: 7px;
     background: var(--copper);
     transform: rotate(45deg);
     transition: transform 0.3s, background 0.3s;
   }
-  .timeline-item:hover::before {
-    transform: rotate(45deg) scale(1.6);
-    background: var(--copper-bright);
-  }
+  .timeline-item:hover::before { transform: rotate(45deg) scale(1.6); background: var(--copper-bright); }
 
   .timeline-age {
     font-family: 'Bebas Neue', sans-serif;
@@ -477,10 +616,7 @@
     position: relative;
     transition: transform 0.3s, border-color 0.3s;
   }
-  .obj-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(184,115,51,0.22);
-  }
+  .obj-card:hover { transform: translateY(-5px); border-color: rgba(184,115,51,0.22); }
 
   .obj-card::before {
     content: '';
@@ -548,16 +684,9 @@
     background: var(--mid);
     transition: border-color 0.3s, background 0.3s;
   }
-  .trait:hover {
-    border-color: rgba(184,115,51,0.2);
-    background: var(--surface);
-  }
+  .trait:hover { border-color: rgba(184,115,51,0.2); background: var(--surface); }
 
-  .trait-icon {
-    font-size: 22px;
-    margin-bottom: 1rem;
-    display: block;
-  }
+  .trait-icon { font-size: 22px; margin-bottom: 1rem; display: block; }
 
   .trait-name {
     font-family: 'Rajdhani', sans-serif;
@@ -573,7 +702,6 @@
 
   /* ACCORDION */
   .accordion { margin-top: 4rem; max-width: 680px; }
-
   .acc-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
 
   .acc-head {
@@ -596,27 +724,14 @@
   }
   .acc-head:hover .acc-head-title { color: var(--copper-bright); }
 
-  .acc-arrow {
-    font-size: 11px;
-    color: var(--copper);
-    transition: transform 0.3s;
-  }
+  .acc-arrow { font-size: 11px; color: var(--copper); transition: transform 0.3s; }
 
-  .acc-body {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s;
-  }
+  .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
   .acc-body.open { max-height: 280px; padding-bottom: 1.2rem; }
   .acc-body p { color: var(--text-muted); font-size: 16px; line-height: 1.7; }
 
   /* FOOTER */
-  .footer-bar {
-    display: flex;
-    height: 3px;
-    position: relative;
-    z-index: 1;
-  }
+  .footer-bar { display: flex; height: 3px; position: relative; z-index: 1; }
   .fb1 { background: var(--copper); flex: 2; }
   .fb2 { background: var(--violet-mid); flex: 1; }
   .fb3 { background: var(--violet-light); flex: 1; }
@@ -656,30 +771,31 @@
     color: var(--text-dim);
   }
 
-  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(28px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  .hero-tag    { animation: fadeUp 0.8s ease 0.1s both; }
-  .hero-name   { animation: fadeUp 0.8s ease 0.25s both; }
-  .hero-sub    { animation: fadeUp 0.8s ease 0.38s both; }
-  .divider     { animation: fadeUp 0.8s ease 0.48s both; }
-  .hero-quote  { animation: fadeUp 0.8s ease 0.58s both; }
-  .stat-row    { animation: fadeUp 0.8s ease 0.72s both; }
+  .hero-tag   { animation: fadeUp 0.8s ease 0.1s  both; }
+  .hero-name  { animation: fadeUp 0.8s ease 0.25s both; }
+  .hero-sub   { animation: fadeUp 0.8s ease 0.38s both; }
+  .divider    { animation: fadeUp 0.8s ease 0.48s both; }
+  .hero-quote { animation: fadeUp 0.8s ease 0.58s both; }
+  .stat-row   { animation: fadeUp 0.8s ease 0.72s both; }
+  .dette-badge{ animation: fadeUp 0.8s ease 0.85s both; }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">R. REZNOV</div>
+  <div class="logo">R. LOPEZ</div>
   <ul>
     <li><a href="#about">Profil</a></li>
+    <li><a href="#amis">Amis</a></li>
+    <li><a href="#dette">Dette</a></li>
     <li><a href="#famille">Famille</a></li>
     <li><a href="#parcours">Parcours</a></li>
     <li><a href="#objectifs">Objectifs</a></li>
-    <li><a href="#caractere">Caractere</a></li>
   </ul>
 </nav>
 
@@ -697,14 +813,14 @@
 
     <h1 class="hero-name">
       <span class="first">Rafael</span>
-      <span class="last">Reznov</span>
+      <span class="last">Lopez</span>
     </h1>
 
-    <p class="hero-sub">South Los Santos &nbsp;&bull;&nbsp; Entrepreneur &nbsp;&bull;&nbsp; 21 ans</p>
+    <p class="hero-sub">El Rancho &nbsp;&bull;&nbsp; Latino Americain &nbsp;&bull;&nbsp; 21 ans</p>
 
     <div class="divider"><div class="divider-gem"></div></div>
 
-    <p class="hero-quote">"Le nom Reznov sera synonyme de <em>reussite</em> &mdash; pas de naissance, de travail."</p>
+    <p class="hero-quote">"Je dois tout regler &mdash; la dette, les soins, le futur. Et je le ferai <em>proprement</em>."</p>
 
     <div class="stat-row">
       <div class="stat">
@@ -712,13 +828,18 @@
         <span class="stat-label">Age</span>
       </div>
       <div class="stat">
-        <span class="stat-value">5+</span>
-        <span class="stat-label">Annees au South</span>
+        <span class="stat-value">2</span>
+        <span class="stat-label">Meilleurs amis</span>
       </div>
       <div class="stat">
         <span class="stat-value">0</span>
         <span class="stat-label">Casier judiciaire</span>
       </div>
+    </div>
+
+    <div class="dette-badge">
+      <span class="dette-badge-label">Dette active &mdash; Los Diablos</span>
+      <span class="dette-badge-val">1 000 000 $</span>
     </div>
   </div>
 </header>
@@ -731,15 +852,15 @@
         <div class="section-label">Qui est-il</div>
         <h2 class="section-title">Le <span>Profil</span></h2>
 
-        <p>Rafael Reznov est ne aux Etats-Unis d'un pere russe, Yakov Reznov, et d'une mere americaine, Kamilla. Tres jeune, il part vivre en Russie avec sa mere pendant plusieurs annees, avant de revenir seul a Los Santos a 16 ans pour retrouver son pere — apres une rupture difficile avec sa mere.</p>
+        <p>Rafael Lopez est ne et a grandi a El Rancho, un quartier dur du East Los Santos. Fils de parents latinos americains qui n'ont jamais quitte le quartier, il a passe toute son enfance et son adolescence dans les memes rues, a jouer avec les memes gars, a connaitre les memes visages. El Rancho, c'est tout ce qu'il a toujours connu.</p>
 
-        <p>Depuis son arrivee dans le South, Rafael s'est construit une vraie place dans le quartier. Tout le monde le connait comme le gars sympa, celui qui met une bonne ambiance meme dans les pires moments. Il a grandi entre les terrains de basket, les petits commerces et les rues animees.</p>
+        <p>Depuis l'ecole primaire, il y a deux noms qui reviennent dans toutes ses histoires : Zia et Tuco. Ses deux meilleurs amis de toujours, ceux avec qui il a grandi, avec qui il a fait les 400 coups, avec qui il est toujours. Les trois ensemble, c'est une force dans le quartier — et quand quelqu'un cherche des problemes, il en trouve. Rafael, Zia et Tuco ne reculent pas. Battes ou poings, ils reglent leurs affaires entre eux et n'ont jamais eu besoin de personne d'autre pour ca.</p>
 
-        <p>Atteint de trisomie, il a ete sous-estime toute sa vie. Beaucoup pensaient qu'il ne reussirait jamais rien de serieux. Rafael a toujours vu les choses autrement : il veut prouver par les faits, pas par les mots.</p>
+        <p>Niveau petits delits, Rafael n'est pas un saint non plus. Voler une voiture par-ci par-la pour se deplacer ou pour faire quelques sous, braquer un petit con qui cherchait la merde, rentrer dans quelqu'un qui avait tort — c'est la vie du quartier et il n'a jamais fait semblant d'etre au-dessus de ca. Rien de gros, rien d'organise, juste ce que le quotidien d'El Rancho impose parfois.</p>
 
-        <div class="divider" style="opacity:0.2; margin: 1.5rem 0; justify-content: flex-start; max-width: 300px;"></div>
+        <div class="divider" style="opacity:0.2; margin:1.5rem 0; justify-content:flex-start; max-width:300px;"></div>
 
-        <p>Contrairement a la plupart des jeunes du South attires par l'argent facile, Rafael a toujours ete fascine par le monde des entreprises et des patrons. Aujourd'hui, il est pret a construire quelque chose qui lui appartient.</p>
+        <p>Mais Rafael sait faire la difference entre survivre dans la rue et se perdre dedans. Il ne veut pas rentrer dans Los Diablos, ne veut pas devenir un criminel a plein temps. Son vrai objectif c'est de construire une entreprise, payer sa dette d'un million et sortir sa famille de la galere. Les petits delits c'est la vie d'avant — pas le plan pour demain.</p>
       </div>
 
       <div>
@@ -751,7 +872,7 @@
           </div>
           <div class="info-row">
             <span class="info-key">Nom</span>
-            <span class="info-val copper">Reznov</span>
+            <span class="info-val copper">Lopez</span>
           </div>
           <div class="info-row">
             <span class="info-key">Age</span>
@@ -759,27 +880,31 @@
           </div>
           <div class="info-row">
             <span class="info-key">Origine</span>
-            <span class="info-val violet">Russo-Americain</span>
+            <span class="info-val violet">Latino Americain</span>
           </div>
           <div class="info-row">
-            <span class="info-key">Lieu de vie</span>
-            <span class="info-val">South Los Santos</span>
+            <span class="info-key">Quartier</span>
+            <span class="info-val">El Rancho</span>
           </div>
           <div class="info-row">
-            <span class="info-key">Pere</span>
-            <span class="info-val">Yakov Reznov</span>
+            <span class="info-key">Amis proches</span>
+            <span class="info-val">Zia &amp; Tuco</span>
           </div>
           <div class="info-row">
-            <span class="info-key">Mere</span>
-            <span class="info-val">Kamilla Reznov</span>
+            <span class="info-key">Famille</span>
+            <span class="info-val">Parents malades</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Dette</span>
+            <span class="info-val red">1 000 000 $</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Creancier</span>
+            <span class="info-val red">Los Diablos</span>
           </div>
           <div class="info-row">
             <span class="info-key">Ambition</span>
-            <span class="info-val copper">Entrepreneur legal</span>
-          </div>
-          <div class="info-row">
-            <span class="info-key">Statut</span>
-            <span class="info-val violet">Casier vierge</span>
+            <span class="info-val copper">Patron d'entreprise</span>
           </div>
         </div>
       </div>
@@ -787,21 +912,63 @@
   </div>
 </section>
 
+<!-- AMIS -->
+<section class="amis-section" id="amis">
+  <div class="section-inner">
+    <div class="section-label">Depuis l'ecole</div>
+    <h2 class="section-title">Les <span>Amis</span></h2>
+    <div class="amis-grid">
+      <div class="ami-card zia">
+        <div class="ami-role">Depuis toujours &mdash; El Rancho</div>
+        <div class="ami-name">Zia</div>
+        <p class="ami-desc">La fille la plus proche de Rafael depuis l'enfance. Ils ont grandi ensemble, partage les memes rues, les memes ecoles, les memes galeres — et les memes bagarres. Quand ils sortaient les battes a trois avec Tuco, Zia etait toujours la, dans le coup autant que les autres. Pour Rafael, elle est bien plus qu'une amie. Sauf que c'est son pere qui a vole Los Diablos, et c'est Rafael qui se retrouve a payer. Il n'en veut pas a Zia pour autant.</p>
+        <div class="ami-tag">Meilleur ami &mdash; vue par elle : un bon pote</div>
+      </div>
+      <div class="ami-card tuco">
+        <div class="ami-role">Depuis toujours &mdash; El Rancho</div>
+        <div class="ami-name">Tuco</div>
+        <p class="ami-desc">L'autre pilier de la bande. Tuco et Rafael se connaissent depuis aussi longtemps que Rafael se souvient. C'est souvent Tuco qui lance les plans les plus chauds — voler une caisse, aller regler un truc avec quelqu'un du quartier d'a cote, rentrer dans un con qui avait la mauvaise attitude. Rafael suit, parce que c'est son gars et que dans le quartier on se couvre. Pour Tuco, Rafael est un bon pote de longue date. Pour Rafael, Tuco c'est un frere.</p>
+        <div class="ami-tag">Meilleur ami &mdash; vu par lui : un bon pote</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETTE -->
+<section class="dette-section" id="dette">
+  <div class="section-inner">
+    <div class="section-label">La pression</div>
+    <h2 class="section-title">La <span>Dette</span></h2>
+
+    <div class="dette-block">
+      <div class="dette-amount"><span>$</span>1 000 000</div>
+      <div class="dette-creditor">Creancier &mdash; Los Diablos &mdash; El Rancho</div>
+      <p class="dette-text">
+        Le pere de Zia a commis l'erreur de voler Los Diablos — le gang qui tient El Rancho depuis des annees. Quand les Diablos ont voulu se faire rembourser, le pere de Zia n'etait plus la pour repondre. La dette a ete transferee, et elle est tombee sur Rafael. Pas parce qu'il l'a decid&eacute;, pas parce qu'il etait implique — juste parce qu'il etait la, parce qu'il fait partie du quartier, et parce que Los Diablos ont decide que c'etait lui qui devait payer.
+      </p>
+      <div class="dette-warning">
+        <div class="dette-warning-bar"></div>
+        <p>Un million de dollars. Remboursable. Los Diablos tiennent le quartier et ils savent ou il habite. Rafael ne peut pas fuir &mdash; il doit trouver un moyen de payer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAMILLE -->
-<section class="famille" id="famille">
+<section class="famille-section" id="famille">
   <div class="section-inner">
     <div class="section-label">Les racines</div>
     <h2 class="section-title">La <span>Famille</span></h2>
     <div class="parents-grid">
-      <div class="parent-card yakov">
-        <div class="parent-origin">Russe &mdash; Los Santos</div>
-        <div class="parent-name">Yakov Reznov</div>
-        <p class="parent-desc">Un homme discret mais respecte dans certains milieux de la ville. Yakov connait toujours quelqu'un qui connait quelqu'un. Patrons, commercants, investisseurs, mecaniciens — son carnet d'adresses est son vrai capital. Il n'a jamais parle de son fils a son entourage, mais l'a aide en silence quand Rafael est revenu a Los Santos.</p>
+      <div class="parent-card papa">
+        <div class="parent-origin">Latino Americain &mdash; El Rancho</div>
+        <div class="parent-name">Le Pere</div>
+        <p class="parent-desc">Il a toujours travaille dur pour donner une vie decente a sa famille dans le quartier. Aujourd'hui il est malade et ne peut plus sortir ni travailler. Il reste a la maison et compte sur Rafael pour que les choses continuent de tourner. Son histoire a El Rancho est connue &mdash; c'est un homme respecte dans le quartier, meme cloue chez lui.</p>
       </div>
-      <div class="parent-card kamilla">
-        <div class="parent-origin">Americaine &mdash; Russie / Los Santos</div>
-        <div class="parent-name">Kamilla Reznov</div>
-        <p class="parent-desc">Charismatique, drole et tres sociable. Kamilla connait tous les voisins, parle avec tout le monde et a toujours protege Rafael avec une energie incroyable. C'est elle qui lui a transmis son cote humain, sa facilite a parler aux gens et sa capacite a remonter le moral des autres. Leur separation a ete douloureuse, mais son influence reste profondement inscrite chez Rafael.</p>
+      <div class="parent-card mama">
+        <div class="parent-origin">Latina Americaine &mdash; El Rancho</div>
+        <div class="parent-name">La Mere</div>
+        <p class="parent-desc">Elle est le coeur de la maison. Meme malade, elle essaie de garder la bonne humeur, de cuisiner quand elle peut, de s'assurer que Rafael mange et dorme. Elle ne connait pas tous les details de la situation &mdash; Rafael lui cache la dette pour ne pas l'inquieter davantage. Elle sait juste que son fils porte quelque chose de lourd, et ca lui fait peur.</p>
       </div>
     </div>
   </div>
@@ -814,34 +981,29 @@
     <h2 class="section-title">Le <span>Parcours</span></h2>
     <div class="timeline">
       <div class="timeline-item">
-        <div class="timeline-age">Naissance &mdash; Amerique</div>
-        <div class="timeline-event">Los Santos, Origine Mixte</div>
-        <p class="timeline-desc">Rafael nait aux Etats-Unis d'un pere russe installe a Los Santos et d'une mere americaine. Deux cultures, deux mondes — une vie qui commence entre deux continents.</p>
+        <div class="timeline-age">Naissance &mdash; El Rancho</div>
+        <div class="timeline-event">Un enfant du quartier</div>
+        <p class="timeline-desc">Rafael Lopez nait a El Rancho de deux parents latinos americains. Pas de vrai argent, pas de grand luxe, mais une famille soudee dans un quartier difficile.</p>
       </div>
       <div class="timeline-item">
-        <div class="timeline-age">Enfance &mdash; Russie</div>
-        <div class="timeline-event">Annees sous la protection de Kamilla</div>
-        <p class="timeline-desc">Sa mere decide de partir vivre en Russie avec lui. Rafael grandit la-bas, protege par Kamilla qui fait tout pour que sa trisomie ne soit pas un obstacle. Il apprend a parler avec les gens, a ne pas s'isoler, a garder le sourire.</p>
+        <div class="timeline-age">Enfance &mdash; Ecole</div>
+        <div class="timeline-event">Zia, Tuco et les rues d'El Rancho</div>
+        <p class="timeline-desc">C'est a l'ecole qu'il rencontre Zia et Tuco. Trois gamins du meme quartier qui ne se quitteront plus. Rafael les suit partout, il est toujours la, toujours loyal — meme si pour eux il est surtout un bon pote parmi d'autres.</p>
       </div>
       <div class="timeline-item">
-        <div class="timeline-age">16 ans &mdash; Tournant</div>
-        <div class="timeline-event">Rupture et depart pour Los Santos</div>
-        <p class="timeline-desc">Une grosse dispute avec sa mere autour de la question de son pere absent. Rafael decide de quitter la Russie seul pour retrouver Yakov a Los Santos — une decision qui va tout changer.</p>
+        <div class="timeline-age">Adolescence</div>
+        <div class="timeline-event">Les 400 coups a trois</div>
+        <p class="timeline-desc">Avec Zia et Tuco, Rafael apprend les codes de la rue. Les bagarres au point ou a la batte contre des petits cons du quartier d'a cote, les voitures embarquees pour une nuit, les petits coups entre amis — rien de gros, mais assez pour savoir comment ca marche dehors. Los Diablos les regardent grandir sans vraiment les recruter. Rafael fait attention de ne pas franchir cette ligne-la.</p>
       </div>
       <div class="timeline-item">
-        <div class="timeline-age">16 ans &mdash; Arrivee</div>
-        <div class="timeline-event">Inconnu dans le South</div>
-        <p class="timeline-desc">Personne ne sait qui il est. Yakov n'a jamais parle de son fils. Rafael commence a zero dans les rues du South, apprend a survivre, a se faire accepter, et a construire sa place dans le quartier.</p>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-age">16 a 21 ans</div>
-        <div class="timeline-event">Construction du personnage</div>
-        <p class="timeline-desc">Cinq ans a se forger une identite dans le South. Les terrains de basket, les petits boulots, les discussions avec les voisins. Rafael devient le gars sympa du quartier — tout le monde le connait, tout le monde l'apprecie.</p>
+        <div class="timeline-age">Recemment</div>
+        <div class="timeline-event">La dette tombe sur lui</div>
+        <p class="timeline-desc">Le pere de Zia a vole Los Diablos. Quand les comptes ont ete demandes, Rafael s'est retrouve designe comme celui qui doit rembourser. Un million de dollars. Il n'avait rien demand&eacute;, rien fait &mdash; mais il doit payer.</p>
       </div>
       <div class="timeline-item">
         <div class="timeline-age">Aujourd'hui &mdash; 21 ans</div>
-        <div class="timeline-event">Pret a changer les choses</div>
-        <p class="timeline-desc">Les contacts de son pere, l'empathie de sa mere, la connaissance du terrain du South — et une ambition que personne n'avait prevue.</p>
+        <div class="timeline-event">Tout repose sur ses epaules</div>
+        <p class="timeline-desc">Ses parents malades a la maison, une dette d'un million sur la tete, deux amis qui ne savent pas tout &mdash; et un seul plan : construire quelque chose de legal, devenir patron, payer sa dette et sortir sa famille de la.</p>
       </div>
     </div>
   </div>
@@ -855,35 +1017,35 @@
     <div class="obj-grid">
       <div class="obj-card court">
         <div class="obj-term">Court terme</div>
-        <div class="obj-heading">Poser les bases</div>
+        <div class="obj-heading">Survivre et s'organiser</div>
         <ul class="obj-list">
-          <li>Trouver un travail stable pour apprendre le fonctionnement des entreprises</li>
-          <li>Commencer a economiser pour investir dans un projet</li>
-          <li>Developper son reseau grace aux contacts de Yakov</li>
-          <li>Se faire connaitre positivement dans les commerces de Los Santos</li>
-          <li>Acheter son premier vehicule et devenir independant</li>
+          <li>Trouver un travail stable pour couvrir les depenses de la famille</li>
+          <li>Continuer les petits coups avec Zia et Tuco pour arrondir les fins de mois</li>
+          <li>Mettre de l'argent de cote chaque semaine sans exception</li>
+          <li>Montrer bonne volonte aux Diablos pour gagner du temps</li>
+          <li>S'informer sur la creation d'entreprise a Los Santos</li>
         </ul>
       </div>
       <div class="obj-card moyen">
         <div class="obj-term">Moyen terme</div>
-        <div class="obj-heading">Passer a l'action</div>
+        <div class="obj-heading">Construire quelque chose</div>
         <ul class="obj-list">
-          <li>Ouvrir une premiere entreprise legale a Los Santos</li>
-          <li>Employer des jeunes du South pour les aider a sortir de la rue</li>
-          <li>Construire une reputation serieuse dans les affaires</li>
-          <li>Apprendre a gerer une equipe et des finances</li>
-          <li>Prouver a son pere qu'il peut reussir seul</li>
+          <li>Lancer sa premiere entreprise legale a Los Santos</li>
+          <li>Generer assez de revenus pour aider ses parents au quotidien</li>
+          <li>Commencer a rembourser la dette par tranches</li>
+          <li>Recruter des gens du quartier pour son activite</li>
+          <li>Construire une reputation serieuse dans le monde des affaires</li>
         </ul>
       </div>
       <div class="obj-card long">
         <div class="obj-term">Long terme</div>
-        <div class="obj-heading">Laisser sa marque</div>
+        <div class="obj-heading">Tout regler</div>
         <ul class="obj-list">
-          <li>Devenir un patron important et respecte a Los Santos</li>
-          <li>Posseder plusieurs entreprises dans differents domaines</li>
-          <li>Etre reconnu autant dans le South que chez les riches entrepreneurs</li>
-          <li>Faire du nom Reznov un symbole de reussite</li>
-          <li>Prouver que son handicap ne l'a jamais vraiment limite</li>
+          <li>Rembourser integralement le million a Los Diablos</li>
+          <li>Payer les soins de ses parents et les sortir de la precarite</li>
+          <li>Posseder plusieurs entreprises rentables dans differents domaines</li>
+          <li>Etre reconnu comme un vrai patron respecte a Los Santos</li>
+          <li>Prouver qu'on peut sortir d'El Rancho par le haut</li>
         </ul>
       </div>
     </div>
@@ -898,62 +1060,62 @@
 
     <div class="trait-grid">
       <div class="trait">
-        <span class="trait-icon" style="color: var(--copper-bright);">&#9651;</span>
-        <div class="trait-name">Ambitieux</div>
-        <p class="trait-desc">Reve grand, pense concret. Il ne cherche pas juste a survivre — il veut construire un empire legal.</p>
-      </div>
-      <div class="trait">
-        <span class="trait-icon" style="color: var(--violet-pale);">&#9632;</span>
-        <div class="trait-name">Determine</div>
-        <p class="trait-desc">Chaque personne qui l'a sous-estime a alimente sa motivation. Il ne lache jamais.</p>
-      </div>
-      <div class="trait">
-        <span class="trait-icon" style="color: var(--copper);">&#9670;</span>
-        <div class="trait-name">Sociable</div>
-        <p class="trait-desc">Heritier du charme de sa mere. A l'aise avec tout le monde, du gamin du South au grand patron.</p>
-      </div>
-      <div class="trait">
-        <span class="trait-icon" style="color: var(--violet-light);">&#9711;</span>
+        <span class="trait-icon" style="color:var(--copper-bright);">&#9651;</span>
         <div class="trait-name">Loyal</div>
-        <p class="trait-desc">N'oublie jamais ceux qui l'ont aide. Le South lui a tout appris — il lui rendra le double.</p>
+        <p class="trait-desc">Il suit Zia et Tuco partout depuis l'enfance. Il porte meme la dette du pere de Zia sans en vouloir a personne. C'est sa nature.</p>
+      </div>
+      <div class="trait">
+        <span class="trait-icon" style="color:var(--violet-pale);">&#9632;</span>
+        <div class="trait-name">Bagarreur</div>
+        <p class="trait-desc">A trois avec Zia et Tuco, il ne recule devant personne. Batte ou poings, il a toujours regle ses affaires dehors — c'est El Rancho qui l'a fait comme ca.</p>
+      </div>
+      <div class="trait">
+        <span class="trait-icon" style="color:var(--copper);">&#9670;</span>
+        <div class="trait-name">Ambitieux</div>
+        <p class="trait-desc">Il ne veut pas juste survivre. Il veut construire, creer, diriger — et prouver qu'un gars d'El Rancho peut reussir proprement.</p>
+      </div>
+      <div class="trait">
+        <span class="trait-icon" style="color:var(--violet-light);">&#9711;</span>
+        <div class="trait-name">Ancre</div>
+        <p class="trait-desc">Il connait son quartier, ses gens, ses codes. El Rancho l'a forme — il veut s'en sortir mais n'oubliera jamais d'ou il vient.</p>
       </div>
     </div>
 
     <div class="accordion">
       <div class="acc-item">
         <div class="acc-head" onclick="toggle(this)">
-          <span class="acc-head-title">Sa trisomie &mdash; une force, pas une limite</span>
+          <span class="acc-head-title">Les petits coups &mdash; une necessite, pas une identite</span>
           <span class="acc-arrow">&#9660;</span>
         </div>
         <div class="acc-body">
-          <p>Toute sa vie, les gens l'ont regarde differemment. Certains avec pitie, d'autres avec mepris. Rafael a appris a utiliser ca — chaque fois que quelqu'un le sous-estime, c'est une occasion de les surprendre. Sa determination a prouver le contraire est probablement son plus grand moteur.</p>
+          <p>Voler une voiture, tabasser un mec qui l'avait cherche, faire quelques petits coups avec Zia et Tuco pour avoir du cash — Rafael ne fait pas semblant que ca n'existe pas. C'est la vie d'El Rancho et il l'assume. Mais il sait faire la difference entre ce qui aide a survivre aujourd'hui et ce qui detruit demain. Il ne veut pas que ca devienne tout ce qu'il est.</p>
         </div>
       </div>
       <div class="acc-item">
         <div class="acc-head" onclick="toggle(this)">
-          <span class="acc-head-title">Relation avec son pere Yakov</span>
+          <span class="acc-head-title">Sa relation avec Zia et la dette</span>
           <span class="acc-arrow">&#9660;</span>
         </div>
         <div class="acc-body">
-          <p>Complexe. Rafael admire Yakov pour ses connexions et son sens des affaires, mais ressent encore une blessure due a l'absence. Il veut prouver qu'il peut reussir sans l'ombre de son pere — tout en reconnaissant que son reseau est une ressource reelle.</p>
+          <p>C'est complique. Rafael ne blame pas Zia — c'est son pere qui a fait ca, pas elle. Et il ne lui dira probablement jamais a quel point ca pese. Il continuera a etre la pour elle comme toujours, parce que c'est qui il est. Mais quelque part, cette situation lui a montre que lui les voit differemment de comment ils le voient.</p>
         </div>
       </div>
       <div class="acc-item">
         <div class="acc-head" onclick="toggle(this)">
-          <span class="acc-head-title">Sa vision du South Los Santos</span>
+          <span class="acc-head-title">Comment il gere ses parents malades</span>
           <span class="acc-arrow">&#9660;</span>
         </div>
         <div class="acc-body">
-          <p>Il aime le South. Pas pour la violence ou le danger — mais pour les gens, l'authenticite, la solidarite entre voisins. Il veut que le quartier soit fier de lui, et il veut etre fier du quartier. Il pense que les gens du South meritent mieux, et il compte bien faire partie de cette amelioration.</p>
+          <p>Il fait ce qu'il faut. Courses, factures, medicaments — Rafael s'occupe de tout sans se plaindre. Il cache la dette a ses parents pour ne pas les inquieter. Leur montrer que tout va bien fait partie de ses priorites quotidiennes, meme quand ce n'est clairement pas le cas.</p>
         </div>
       </div>
       <div class="acc-item">
         <div class="acc-head" onclick="toggle(this)">
-          <span class="acc-head-title">Pourquoi rester dans le legal</span>
+          <span class="acc-head-title">Sa vision de la reussite</span>
           <span class="acc-arrow">&#9660;</span>
         </div>
         <div class="acc-body">
-          <p>Rafael a vu ce que la criminalite fait aux gens autour de lui. Il ne veut pas finir en prison ou en cercueil avant 30 ans. Il croit sincerement qu'on peut reussir autrement — et il veut en etre la preuve vivante.</p>
+          <p>Rembourser la dette. Payer les soins de ses parents. Ouvrir sa propre boite. Devenir patron. Pas pour les fringues ou les voitures — pour ne plus jamais etre dans une position ou quelqu'un peut lui mettre un million de dollars sur le dos et le tenir par la gorge.</p>
         </div>
       </div>
     </div>
@@ -961,20 +1123,18 @@
 </section>
 
 <div class="footer-bar">
-  <div class="fb1"></div>
-  <div class="fb2"></div>
-  <div class="fb3"></div>
-  <div class="fb4"></div>
+  <div class="fb1"></div><div class="fb2"></div>
+  <div class="fb3"></div><div class="fb4"></div>
 </div>
 
 <footer>
   <div>
-    <div class="f-name">Rafael Reznov</div>
+    <div class="f-name">Rafael Lopez</div>
     <div class="f-sub">Los Santos &mdash; Background GTA RP</div>
   </div>
   <div class="f-right">
-    South Los Santos<br>
-    21 ans &mdash; Entrepreneur
+    El Rancho &mdash; East Los Santos<br>
+    21 ans &mdash; Latino Americain
   </div>
 </footer>
 
