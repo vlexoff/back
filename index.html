@@ -48,7 +48,6 @@ body.in .hero h1 .l2{animation-delay:.18s}
 .facts b{font:600 20px var(--b)}
 .road{position:absolute;left:0;right:0;bottom:22px;height:6px;background:repeating-linear-gradient(90deg,var(--w) 0 70px,transparent 70px 140px);animation:road 1.1s linear infinite;opacity:.9}
 @keyframes road{to{background-position-x:-140px}}
-.quote{position:relative;margin-top:36px;max-width:640px;font-size:20px;color:var(--w);background:var(--k);padding:4px 0}
 
 /* marquee */
 .mq{background:var(--y);color:var(--k);overflow:hidden;white-space:nowrap;transform:rotate(-1.4deg) scale(1.03);margin:-10px 0 40px;position:relative;z-index:2}
@@ -68,41 +67,28 @@ body.in .hero h1 .l2{animation-delay:.18s}
 .chap:last-child{padding-bottom:0}
 .chap h3{font-size:clamp(34px,5vw,64px);color:var(--y);margin-bottom:20px}
 .chap p{max-width:62ch;margin-bottom:16px}
-.pull{font:400 clamp(26px,3.6vw,44px)/1.05 var(--d);text-transform:uppercase;border-left:6px solid var(--y);padding-left:20px;margin:28px 0;max-width:22em}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0;max-width:760px}
-.two div{padding:22px}
-.two .a{background:var(--w);color:var(--k)}
-.two .b{background:var(--y);color:var(--k)}
-.two h4{font:400 26px var(--d);text-transform:uppercase;margin-bottom:8px}
-.two p{margin:0;font-size:16px}
 
 /* white section */
 .wh{background:var(--w);color:var(--k)}
 .hz{height:16px;background:repeating-linear-gradient(-45deg,var(--y) 0 16px,var(--k) 16px 32px)}
-.goals{display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px;max-width:1100px;margin:0 auto}
-.goal{display:grid;grid-template-columns:90px 1fr;gap:6px 14px;padding:26px 0;border-top:3px solid var(--k)}
-.goal i{font:normal 400 64px/1 var(--d);color:var(--y);-webkit-text-stroke:2px var(--k)}
-.goal h4{font:400 28px/1.05 var(--d);text-transform:uppercase}
-.goal p{grid-column:2;font-size:16px;line-height:1.55}
-
-/* traits */
-.chips{display:flex;flex-wrap:wrap;gap:10px;max-width:1100px;margin:0 auto 70px}
-.chips span{padding:10px 22px;border:2px solid var(--w);font:400 24px var(--d);text-transform:uppercase;transition:.25s}
-.chips span:nth-child(odd){transform:skewX(-10deg)}
-.chips span:nth-child(even){transform:skewX(-10deg);border-color:var(--y);color:var(--y)}
-.chips span:hover{background:var(--y);color:var(--k);border-color:var(--y)}
-.fw{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1100px;margin:0 auto}
-.fw>div{padding:34px}
-.fw .f{background:var(--y);color:var(--k)}
-.fw .w{border:3px solid var(--w)}
-.fw h3{font-size:44px;margin-bottom:18px}
-.fw li{list-style:none;padding:12px 0;border-top:2px solid currentColor;font-size:16px;line-height:1.5}
-.fw li b{display:block;font:400 22px var(--d);text-transform:uppercase;letter-spacing:.02em}
-
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1100px;margin:0 auto 50px;font-size:20px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;max-width:1100px;margin:0 auto}
+.chips span{padding:10px 26px;border:3px solid var(--k);font:400 28px var(--d);text-transform:uppercase;transform:skewX(-10deg);transition:.25s}
+.chips span:nth-child(even){background:var(--k);color:var(--w)}
+.chips span:hover{background:var(--y);color:var(--k)}
+.wrap{max-width:1200px;margin:0 auto}
+.lead{font-size:clamp(22px,2.6vw,32px);line-height:1.35;max-width:34em;margin:0 0 56px}
+.terms{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.term{border:3px solid var(--w);padding:30px 26px;transition:transform .3s,border-color .3s}
+.term:hover{border-color:var(--y);transform:translateY(-6px)}
+.term i{display:block;font:normal 400 84px/1 var(--d);color:transparent;-webkit-text-stroke:2px var(--y)}
+.term h3{font-size:40px;margin:6px 0 18px}
+.term p{font-size:16px;line-height:1.6;margin-bottom:14px}
+.term:last-child{background:var(--y);color:var(--k);border-color:var(--y)}
+.term:last-child i{-webkit-text-stroke-color:var(--k)}
 /* end */
-.end{background:var(--y);color:var(--k);padding:110px 6vw 160px;text-align:left}
-.end blockquote{font-size:clamp(40px,8.5vw,128px);max-width:11em}
-.end p{max-width:34em;margin-top:44px;font:600 clamp(20px,2.4vw,28px)/1.4 var(--b)}
+.end{background:var(--y);color:var(--k);padding:110px 6vw 160px}
+.end blockquote{font-size:clamp(30px,5.4vw,78px);max-width:16em;line-height:1.02}
 footer{background:var(--k);padding:26px 6vw 110px;color:var(--g);font-size:14px}
 
 /* player */
@@ -125,9 +111,9 @@ footer{background:var(--k);padding:26px 6vw 110px;color:var(--g);font-size:14px}
 @media(max-width:760px){
 body{font-size:17px}
 .facts{grid-template-columns:1fr 1fr}
-.two,.fw,.goals{grid-template-columns:1fr}
+.terms,.cols{grid-template-columns:1fr}
+.cols{font-size:18px}
 .tl{padding-left:44px}.rail{left:6px}
-.goal{grid-template-columns:70px 1fr}.goal i{font-size:50px}
 .vol input{width:52px}
 .hero::before{width:60vw;right:-30vw}
 }
@@ -154,7 +140,6 @@ body{font-size:17px}
     <div><small>Naissance</small><b>Los Santos</b></div>
     <div><small>Statut</small><b>Petit frère de Sekou</b></div>
   </div>
-  <p class="quote">« J'ai grandi dans l'ombre de mon frère. Aujourd'hui, j'essaie juste de trouver ma propre place. »</p>
   <div class="road"></div>
 </header>
 
@@ -164,90 +149,56 @@ body{font-size:17px}
   <h2 class="d">Son parcours</h2>
   <div class="tl" id="tl">
     <div class="rail"><div class="fill" id="fill"><div class="dot"></div></div></div>
-
-    <article class="chap">
-      <h3 class="d">L'enfance</h3>
-      <p>Makamé naît et grandit à Los Santos, dans une famille où son grand frère Sekou a toujours tenu une place importante. Depuis tout petit, il l'admire : sa façon de parler, son comportement, ses motos, ses fréquentations. Il veut tout comprendre et surtout lui ressembler.</p>
-      <p>C'est Sekou qui lui fait découvrir la Bike Life. Les motos deviennent une obsession : il regarde son frère rouler, l'accompagne quand il le peut et rêve du jour où il prendra lui aussi le guidon.</p>
-      <p>Mais son caractère n'est pas celui de son frère. Makamé est bien plus impulsif, nerveux et influençable.</p>
-    </article>
-
-    <article class="chap">
-      <h3 class="d">Les mauvaises rencontres</h3>
-      <p>En grandissant, il passe de plus en plus de temps dehors et rencontre des gens, des bons et beaucoup moins bons. Il veut être accepté, être respecté, ne plus être « le petit frère de Sekou ».</p>
-      <p>C'est à cette période qu'il découvre la drogue. D'abord par curiosité, puis avec ses fréquentations, puis par habitude. Il pense pouvoir arrêter quand il le veut.</p>
-    </article>
-
-    <article class="chap">
-      <h3 class="d">La dépendance</h3>
-      <p>Avec le temps, la consommation prend toute la place. Son comportement dépend de ce qu'il a ou non à portée de main.</p>
-      <div class="two">
-        <div class="a"><h4>Quand il a ce qu'il lui faut</h4><p>Calme, sociable et même drôle.</p></div>
-        <div class="b"><h4>Quand il n'a plus rien</h4><p>Stressé, irritable, imprévisible. Il provoque pour rien, prend des risques inutiles, ment, et fait des choix qu'il regrettera quelques heures plus tard.</p></div>
-      </div>
-      <p>Il sait qu'il a un problème, mais refuse de l'admettre.</p>
-      <div class="pull">Arrêter, ce serait accepter qu'il a perdu le contrôle. Et Makamé déteste perdre le contrôle.</div>
-    </article>
-
-    <article class="chap">
-      <h3 class="d">La relation avec Sekou</h3>
-      <p>Sekou a toujours gardé un œil sur son petit frère. Makamé l'aime énormément, mais leur relation est compliquée : il apprécie que Sekou soit là, il déteste être le petit frère qu'il faut protéger.</p>
-      <p>Il veut prouver qu'il peut se débrouiller seul et que Sekou peut lui faire confiance. Mais sa dépendance cause régulièrement des problèmes. Sekou comprend peu à peu qu'il fréquente de mauvaises personnes et qu'il est devenu bien plus instable.</p>
-      <p>Makamé cache l'ampleur du problème pour ne pas passer pour un faible. Pourtant, au fond, il sait qu'il a besoin de quelqu'un.</p>
-    </article>
-
-    <article class="chap">
-      <h3 class="d">Le retour de Sekou</h3>
-      <p>Quand Sekou reprend la moto après des années passées à se reconstruire, quelque chose change chez Makamé. Une partie de son enfance revient. Il retrouve ce qu'il ressentait en regardant son frère rouler.</p>
-      <p>Il s'intéresse de nouveau sérieusement aux motos, mais cette fois il ne veut pas seulement suivre Sekou : il veut faire ses preuves à ses côtés. Pas de crew à lui, pas de rôle de chef. Il veut être accepté par ceux qui entourent son frère et montrer qu'il peut être utile.</p>
-    </article>
-
-    <article class="chap">
-      <h3 class="d">Sa place dans la rue</h3>
-      <p>Los Santos fonctionne avec le respect, la réputation et les relations. Makamé cherche sa place. Il veut gagner de l'argent, beaucoup, mais sa consommation passe avant tout.</p>
-      <p>Quand il a besoin de quelque chose, sa logique disparaît. Il accepte des boulots dangereux, fréquente de mauvaises personnes et se retrouve dans des situations qui dépassent ses intentions de départ.</p>
-      <div class="pull">Chaque fois, il se promet que c'est la dernière. La promesse ne tient jamais longtemps.</div>
-    </article>
+    <article class="chap"><h3 class="d">L'enfance</h3>
+      <p>Makamé Brooks est né et a grandi à Los Santos avec son grand frère Sekou Brooks depuis tout petit il a toujours été très proche de lui et il a beaucoup appris en le regardant surtout avec les motos et la Bike Life Sekou a toujours été un modèle pour lui et Makamé a longtemps voulu faire comme son frère et avoir la même reconnaissance que lui</p></article>
+    <article class="chap"><h3 class="d">Les mauvaises rencontres</h3>
+      <p>En grandissant Makamé a commencé à faire ses propres connaissances et à trainer avec des personnes pas toujours très fréquentable au début il voulait surtout se faire son propre nom parce qu'il en avait marre d'être juste connu comme le petit frère de Sekou il voulait qu'on le respecte pour ce qu'il était lui</p></article>
+    <article class="chap"><h3 class="d">La dépendance</h3>
+      <p>C'est à cette période qu'il commence à toucher à la drogue au départ c'était juste pour essayer et passer du temps avec les autres mais avec le temps c'est devenu une habitude puis une vraie dépendance aujourd'hui Makamé a beaucoup de mal à s'en passer quand il a ce qu'il lui faut il peut être calme et tranquille mais quand il en a plus il devient très stressé nerveux et fait souvent de la merde il peut s'embrouiller avec quelqu'un pour rien prendre des décisions sur un coup de tête ou se mettre dans des situations compliqué juste pour pouvoir retrouver ce dont il a besoin</p>
+      <p>Il sait qu'il a un problème mais il veut pas vraiment l'admettre et encore moins le montrer aux autres il préfère faire comme si tout allait bien même avec Sekou</p></article>
+    <article class="chap"><h3 class="d">Sekou</h3>
+      <p>Malgré tout ça son frère reste la personne la plus importante pour lui Makamé ne veut pas créer son propre crew ni prendre la place de quelqu'un il veut juste trouver sa place auprès de Sekou et des personnes qui l'entoure gagner leur confiance et montrer qu'il peut être utile</p></article>
+    <article class="chap"><h3 class="d">Son argent</h3>
+      <p>Il veut aussi gagner son propre argent et devenir indépendant surtout pour ne plus avoir besoin de compter sur les autres mais son plus gros problème reste sa dépendance parce qu'elle lui fait faire des choses qu'il ne ferait jamais normalement</p></article>
+    <article class="chap"><h3 class="d">La moto</h3>
+      <p>La moto reste une des seules choses qui lui permet de se sentir vraiment libre et c'est aussi un des trucs qui le rapproche le plus de Sekou</p></article>
   </div>
 </section>
 
 <div class="hz"></div>
 <section class="sec wh">
-  <h2 class="d">Ses objectifs</h2>
-  <div class="goals">
-    <div class="goal"><i>1</i><h4>Trouver sa place auprès de Sekou</h4><p>Pas de crew à lui. Il veut être aux côtés de son frère et gagner sa place auprès de ceux qui l'entourent.</p></div>
-    <div class="goal"><i>2</i><h4>Être respecté pour son propre nom</h4><p>Il en a assez d'entendre « Ah, toi t'es le petit frère de Sekou ? ». Il veut qu'on connaisse Makamé Brooks.</p></div>
-    <div class="goal"><i>3</i><h4>Gagner de l'argent</h4><p>Pour être indépendant et financer son mode de vie. Cette obsession le pousse aussi à faire de mauvais choix.</p></div>
-    <div class="goal"><i>4</i><h4>Continuer la Bike Life</h4><p>La moto, c'est là qu'il se sent libre, et l'un des rares liens qu'il partage avec son frère sans conflit.</p></div>
-    <div class="goal"><i>5</i><h4>Protéger Sekou</h4><p>Instable, mais constant sur un point : personne ne touchera à son frère. S'il doit prendre des risques, il les prendra.</p></div>
-    <div class="goal"><i>6</i><h4>Cacher sa dépendance</h4><p>Il garde l'image d'un mec sûr de lui et indépendant.</p></div>
-    <div class="goal"><i>7</i><h4>Reprendre le contrôle</h4><p>Une partie de lui voudrait sortir de cette dépendance. Seul, il n'en est pas encore capable.</p></div>
+  <h2 class="d">Personnalité</h2>
+  <div class="cols">
+    <p>Makamé est quelqu'un qui aime rigoler et passer du temps avec les gens qu'il apprécie mais il peut très vite changer quand il est en manque il devient impulsif provocateur et parfois agressif il réfléchit souvent après avoir fait les choses et se retrouve régulièrement à regretter ses décisions</p>
+    <p>Malgré tous ses défauts Makamé reste quelqu'un de très loyal quand il considère quelqu'un comme sa famille il est prêt à beaucoup pour cette personne et pour Sekou il serait capable de prendre des risques qu'il ne prendrait pour personne d'autre</p>
   </div>
+  <div class="chips"><span>Loyal</span><span>Impulsif</span><span>Provocateur</span><span>Agressif</span></div>
 </section>
 <div class="hz"></div>
 
 <section class="sec">
-  <h2 class="d">Personnalité</h2>
-  <div class="chips"><span>Loyal</span><span>Impulsif</span><span>Sociable</span><span>Provocateur</span><span>Nerveux</span><span>Agressif</span><span>Paranoïaque</span><span>Jaloux</span><span>Méfiant</span><span>Imprévisible</span></div>
-  <p style="max-width:62ch;margin:-30px auto 70px;max-width:1100px">Extrêmement drôle quand il est à l'aise, il aime parler, rigoler et passer du temps avec ceux qu'il apprécie. Mais il peut prendre une décision sur un coup de tête et ne réaliser qu'après qu'il vient de créer un énorme problème.</p>
-  <div class="fw">
-    <div class="f"><h3 class="d">Forces</h3><ul>
-      <li><b>Loyauté</b>Quand il considère quelqu'un comme sa famille, il est prêt à beaucoup pour lui.</li>
-      <li><b>Courage</b>Il n'a pas peur des risques, parfois beaucoup trop.</li>
-      <li><b>Débrouillardise</b>Il trouve souvent une solution quand il est dans la merde.</li>
-      <li><b>Bike Life</b>La moto est son domaine, là où il est vraiment lui-même.</li></ul></div>
-    <div class="w"><h3 class="d">Faiblesses</h3><ul>
-      <li><b>Sa dépendance</b>Son plus gros problème.</li>
-      <li><b>Son impulsivité</b>Il réfléchit souvent après avoir agi.</li>
-      <li><b>Son besoin de reconnaissance</b>Il veut constamment prouver sa valeur.</li>
-      <li><b>Son influence</b>Il suit facilement les mauvaises personnes quand il cherche à être accepté.</li>
-      <li><b>Sekou</b>Sa plus grande force, et sa plus grande faiblesse. Il ferait presque n'importe quoi pour lui.</li></ul></div>
+  <h2 class="d">Ses objectifs</h2>
+  <div class="wrap">
+    <p class="lead">Son but n'est pas de devenir le plus connu de Los Santos il veut juste se faire une place gagner le respect des autres rester au côté de son frère et essayer de reprendre un minimum le contrôle sur sa vie</p>
+    <div class="terms">
+      <div class="term"><i>01</i><h3 class="d">Court terme</h3>
+        <p>Makamé veut surtout réussir à trouver sa place au près de son frère et de son entourage sans chercher à prendre la place de quelqu’un il veut se faire accepter et montrer qu’il peut être utile</p>
+        <p>Il veut aussi commencer à gagner son propre argent parce que pour le moment il dépend encore beaucoup des autres et surtout il veut toujours avoir de quoi consommer parce que quand il est en manque il devient vite ingérable et fait de la merde</p>
+        <p>Il veut aussi commencer à se faire un nom à Los Santos et qu’on arrête de le voir seulement comme le petit frère de Sekou</p></div>
+      <div class="term"><i>02</i><h3 class="d">Moyen terme</h3>
+        <p>Avec le temps Makamé veut devenir quelqu’un sur qui son frère peut vraiment compter il veut avoir de bonnes relations avec les gens autour de lui et se faire respecter sans avoir besoin de provoquer ou de chercher les problèmes</p>
+        <p>Il veut aussi avoir une situation plus stable gagner plus d’argent et pouvoir vivre sans toujours courir après la prochaine dose même si pour l’instant il est loin d’être capable d’arrêter</p>
+        <p>Il aimerait aussi prendre plus de recul sur ses fréquentations parce qu’il sait que certaines personnes l’ont beaucoup poussé vers la merde</p></div>
+      <div class="term"><i>03</i><h3 class="d">Long terme</h3>
+        <p>Sur le long terme Makamé aimerait réussir à sortir de cette dépendance même si il ne se voit pas arrêter du jour au lendemain il veut surtout arriver à reprendre le controle de sa vie et ne plus être quelqu’un qui fait n’importe quoi dès qu’il est en manque</p>
+        <p>Il veut devenir indépendant avoir sa propre vie et surtout pouvoir regarder Sekou dans les yeux sans avoir l’impression de toujours être le petit frère qu’il faut surveiller</p>
+        <p>Et surtout il veut rester au coté de son frère quoi qu’il arrive parce que même si Makamé veut faire sa propre vie il oubliera jamais que Sekou reste sa famille et la personne qu’il respecte le plus</p></div>
+    </div>
   </div>
 </section>
 
 <section class="end">
-  <blockquote class="d">J'suis peut-être le petit frère de Sekou… mais j'suis pas son ombre.</blockquote>
-  <p>Au fond, Makamé n'a qu'une vraie question : est-ce qu'il va réussir à construire sa propre histoire, ou est-ce que ses addictions et ses mauvais choix vont finir par la détruire ?</p>
+  <blockquote class="d">« J'suis le petit frère de Sekou, ouais. Mais j'veux pas passer toute ma vie derrière lui. J'veux juste qu'un jour, quand on parlera de moi, on ai pas besoin de dire qui est mon frère. »</blockquote>
 </section>
 <footer>Makamé Brooks — Background RP</footer>
 
